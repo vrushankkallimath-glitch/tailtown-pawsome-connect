@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Share2, MoreHorizontal, Award, Camera, FileText, Bookmark } from "lucide-react";
 import { BoopButton } from "./BoopButton";
+import { CommentsSection } from "./CommentsSection";
 import { cn } from "@/lib/utils";
 
 export type PostType = "photo" | "text" | "milestone";
@@ -54,6 +55,7 @@ const PostTypeBadge = ({ type }: { type: PostType }) => {
 };
 
 export const PostCard = ({
+  id,
   type,
   author,
   content,
@@ -65,6 +67,7 @@ export const PostCard = ({
 }: PostCardProps) => {
   const [saved, setSaved] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [commentsOpen, setCommentsOpen] = useState(false);
 
   return (
     <motion.article
@@ -160,10 +163,17 @@ export const PostCard = ({
         <BoopButton initialCount={boops} />
         
         <motion.button 
-          className="btn-boop bg-sage-light text-muted-foreground hover:bg-primary hover:text-primary-foreground"
+          className={cn(
+            "btn-boop",
+            commentsOpen 
+              ? "bg-primary text-primary-foreground" 
+              : "bg-sage-light text-muted-foreground hover:bg-primary hover:text-primary-foreground"
+          )}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => setCommentsOpen(!commentsOpen)}
           aria-label={`${comments} comments`}
+          aria-expanded={commentsOpen}
         >
           <MessageCircle className="w-4 h-4" />
           <span>{comments}</span>
@@ -191,10 +201,13 @@ export const PostCard = ({
             whileTap={{ scale: 0.9 }}
             aria-label="Share post"
           >
-            <Share2 className="w-4 h-4 text-muted-foreground" />
+          <Share2 className="w-4 h-4 text-muted-foreground" />
           </motion.button>
         </div>
       </div>
+
+      {/* Comments Section */}
+      <CommentsSection postId={id} isOpen={commentsOpen} />
     </motion.article>
   );
 };
