@@ -181,9 +181,10 @@ const Index = () => {
 
       {/* Floating Action Button */}
       <motion.button
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.1, rotate: 90 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-24 right-4 md:bottom-8 md:right-8 w-14 h-14 rounded-full bg-secondary text-secondary-foreground shadow-lg flex items-center justify-center z-50"
+        className="fab-button fixed bottom-24 right-4 md:bottom-8 md:right-8 z-50 animate-pulse-glow"
+        aria-label="Create new post"
       >
         <Plus className="w-6 h-6" />
       </motion.button>

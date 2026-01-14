@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Share2, MoreHorizontal, Award, Camera, FileText } from "lucide-react";
+import { MessageCircle, Share2, MoreHorizontal, Award, Camera, FileText, Bookmark } from "lucide-react";
 import { BoopButton } from "./BoopButton";
+import { cn } from "@/lib/utils";
 
 export type PostType = "photo" | "text" | "milestone";
 
@@ -40,10 +42,14 @@ const PostTypeBadge = ({ type }: { type: PostType }) => {
   };
 
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-sage-light text-primary">
+    <motion.span 
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-sage-light text-primary"
+    >
       <PostTypeIcon type={type} />
       {labels[type]}
-    </span>
+    </motion.span>
   );
 };
 
@@ -57,33 +63,45 @@ export const PostCard = ({
   timeAgo,
   milestone,
 }: PostCardProps) => {
+  const [saved, setSaved] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
       className="card-tailtown overflow-hidden break-inside-avoid mb-4"
+      layout
     >
       {/* Header */}
       <div className="p-4 pb-3">
         <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-secondary/20 overflow-hidden ring-2 ring-secondary/30">
+          <motion.div 
+            className="flex items-center gap-3 cursor-pointer group"
+            whileHover={{ x: 2 }}
+          >
+            <div className="w-11 h-11 avatar-ring bg-secondary/20">
               <img
                 src={author.avatar}
                 alt={author.petName}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
             <div>
-              <p className="font-display font-bold text-sm">{author.petName}</p>
+              <p className="font-display font-bold text-sm group-hover:text-primary transition-colors">
+                {author.petName}
+              </p>
               <p className="text-xs text-muted-foreground">
                 {author.neighborhood} • {timeAgo}
               </p>
             </div>
-          </div>
-          <button className="p-1 hover:bg-muted rounded-full transition-colors">
+          </motion.div>
+          <motion.button 
+            className="btn-icon"
+            whileHover={{ rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="More options"
+          >
             <MoreHorizontal className="w-5 h-5 text-muted-foreground" />
-          </button>
+          </motion.button>
         </div>
 
         <div className="mt-2">
@@ -93,22 +111,43 @@ export const PostCard = ({
 
       {/* Milestone Banner */}
       {type === "milestone" && milestone && (
-        <div className="mx-4 mb-3 p-3 rounded-xl bg-terracotta-light border border-secondary/20">
-          <p className="text-sm font-display font-bold text-secondary text-center">
+        <motion.div 
+          className="mx-4 mb-3 p-3 rounded-xl bg-terracotta-light border border-secondary/20"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <motion.p 
+            className="text-sm font-display font-bold text-secondary text-center"
+            animate={{ scale: [1, 1.02, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
             🏆 {milestone}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       )}
 
       {/* Image */}
       {image && (
-        <div className="relative">
+        <motion.div 
+          className="relative overflow-hidden cursor-pointer group"
+          whileHover={{ scale: 1.01 }}
+        >
+          {!imageLoaded && (
+            <div className="w-full h-48 bg-sage-light animate-pulse" />
+          )}
           <img
             src={image}
             alt="Post content"
-            className="w-full object-cover"
+            className={cn(
+              "w-full object-cover transition-all duration-500",
+              "group-hover:brightness-105",
+              imageLoaded ? "opacity-100" : "opacity-0 h-0"
+            )}
+            onLoad={() => setImageLoaded(true)}
           />
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </motion.div>
       )}
 
       {/* Content */}
@@ -119,13 +158,42 @@ export const PostCard = ({
       {/* Actions */}
       <div className="px-4 pb-4 flex items-center gap-2">
         <BoopButton initialCount={boops} />
-        <button className="btn-boop bg-sage-light text-muted-foreground hover:bg-primary hover:text-primary-foreground">
+        
+        <motion.button 
+          className="btn-boop bg-sage-light text-muted-foreground hover:bg-primary hover:text-primary-foreground"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={`${comments} comments`}
+        >
           <MessageCircle className="w-4 h-4" />
           <span>{comments}</span>
-        </button>
-        <button className="p-2 rounded-full hover:bg-muted transition-colors ml-auto">
-          <Share2 className="w-4 h-4 text-muted-foreground" />
-        </button>
+        </motion.button>
+        
+        <div className="ml-auto flex items-center gap-1">
+          <motion.button 
+            className="btn-icon"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setSaved(!saved)}
+            aria-label={saved ? "Unsave post" : "Save post"}
+            aria-pressed={saved}
+          >
+            <Bookmark 
+              className={cn(
+                "w-4 h-4 transition-colors",
+                saved ? "fill-secondary text-secondary" : "text-muted-foreground"
+              )} 
+            />
+          </motion.button>
+          <motion.button 
+            className="btn-icon"
+            whileHover={{ scale: 1.1, rotate: 15 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Share post"
+          >
+            <Share2 className="w-4 h-4 text-muted-foreground" />
+          </motion.button>
+        </div>
       </div>
     </motion.article>
   );
