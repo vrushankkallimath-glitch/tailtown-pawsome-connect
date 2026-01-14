@@ -126,6 +126,12 @@
 
 @layer components {
   .card-tailtown {
+    @apply bg-card rounded-2xl shadow-tailtown border border-border/50
+           transition-all duration-300 ease-out
+           hover:shadow-tailtown-lg hover:-translate-y-1;
+  }
+
+  .card-tailtown-static {
     @apply bg-card rounded-2xl shadow-tailtown border border-border/50;
   }
 
@@ -135,21 +141,47 @@
            transition-all duration-200 ease-out
            hover:bg-secondary hover:text-secondary-foreground
            hover:scale-110 hover:shadow-md
-           active:scale-95;
+           active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-secondary/50;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-xl transition-all duration-200 ease-out
+           hover:bg-muted hover:scale-105
+           active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-primary/30;
   }
 
   .nav-item {
     @apply flex flex-col items-center gap-1 p-2 rounded-xl
            text-muted-foreground transition-all duration-200
-           hover:text-primary hover:bg-sage-light;
+           hover:text-primary hover:bg-sage-light hover:scale-105
+           active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-primary/30;
   }
 
   .nav-item-active {
     @apply text-primary bg-sage-light;
   }
 
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl font-medium 
+           transition-all duration-200 ease-out
+           focus:outline-none focus:ring-2 focus:ring-primary/30;
+  }
+
+  .sidebar-link-active {
+    @apply bg-primary text-primary-foreground shadow-sm;
+  }
+
+  .sidebar-link-inactive {
+    @apply text-sidebar-foreground hover:bg-sage-light hover:translate-x-1;
+  }
+
   .tab-pill {
-    @apply px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200;
+    @apply px-4 py-2 rounded-full text-sm font-semibold 
+           transition-all duration-200 ease-out
+           focus:outline-none focus:ring-2 focus:ring-primary/30;
   }
 
   .tab-pill-active {
@@ -157,12 +189,15 @@
   }
 
   .tab-pill-inactive {
-    @apply bg-sage-light text-muted-foreground hover:bg-primary/10;
+    @apply bg-transparent text-muted-foreground 
+           hover:bg-primary/10 hover:text-primary;
   }
 
   .sos-banner {
     @apply bg-destructive/15 border border-destructive/30 rounded-2xl p-4
-           flex items-center gap-3;
+           flex items-center gap-3 cursor-pointer
+           transition-all duration-200 ease-out
+           hover:bg-destructive/20 hover:shadow-md;
   }
 
   .masonry-grid {
@@ -171,7 +206,30 @@
 
   .personality-tag {
     @apply inline-block px-2.5 py-1 rounded-full text-xs font-medium
-           bg-terracotta-light text-secondary;
+           bg-terracotta-light text-secondary
+           transition-all duration-200
+           hover:bg-secondary hover:text-secondary-foreground;
+  }
+
+  .fab-button {
+    @apply w-14 h-14 rounded-full bg-secondary text-secondary-foreground 
+           shadow-lg flex items-center justify-center
+           transition-all duration-200 ease-out
+           hover:shadow-xl hover:bg-secondary/90
+           focus:outline-none focus:ring-4 focus:ring-secondary/30;
+  }
+
+  .avatar-ring {
+    @apply rounded-full overflow-hidden ring-2 ring-secondary/30
+           transition-all duration-200
+           hover:ring-4 hover:ring-secondary/50;
+  }
+
+  .input-search {
+    @apply w-full px-4 py-3 rounded-xl bg-sage-light border-0
+           text-foreground placeholder:text-muted-foreground
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-card;
   }
 }
 
@@ -182,8 +240,8 @@
   }
 
   .shadow-tailtown-lg {
-    box-shadow: 0 8px 32px -8px hsl(var(--warm-shadow) / 0.12),
-                0 4px 16px -4px hsl(var(--warm-shadow) / 0.06);
+    box-shadow: 0 8px 32px -8px hsl(var(--warm-shadow) / 0.15),
+                0 4px 16px -4px hsl(var(--warm-shadow) / 0.08);
   }
 
   .bg-sage-light {
@@ -200,5 +258,27 @@
 
   .bg-boop {
     background-color: hsl(var(--boop));
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--secondary) / 0.4); }
+    50% { box-shadow: 0 0 0 8px hsl(var(--secondary) / 0); }
   }
 }
