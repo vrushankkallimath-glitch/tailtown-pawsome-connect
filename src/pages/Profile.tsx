@@ -2,8 +2,8 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { Settings, Edit3, Plus } from "lucide-react";
 import { motion } from "framer-motion";
 
-import dogGolden from "@/assets/dog-golden.jpg";
-import catOrange from "@/assets/cat-orange.jpg";
+import dogGolden from "@/assets/images(2).jpg";
+import catOrange from "@/assets/unnamed.png";
 
 const userProfile = {
   name: "Jamie Wilson",
