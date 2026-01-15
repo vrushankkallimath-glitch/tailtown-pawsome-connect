@@ -8,11 +8,42 @@ import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
 // Import images
-import dogGolden from "@/assets/dog-golden.jpg";
-import catOrange from "@/assets/cat-orange.jpg";
-import dogFrenchie from "@/assets/dog-frenchie.jpg";
-import dogCorgi from "@/assets/dog-corgi.jpg";
-import dogBorderCollie from "@/assets/dog-border-collie.jpg";
+import images2 from "@/TailTown-pictures-and-reviews/images(2).jpg";
+import images3 from "@/TailTown-pictures-and-reviews/images(3).jpg";
+import unnamed5 from "@/TailTown-pictures-and-reviews/unnamed(5).png";
+import unnamed from "@/TailTown-pictures-and-reviews/unnamed.png";
+import unnamed1 from "@/TailTown-pictures-and-reviews/unnamed(1).png";
+import unnamed2 from "@/TailTown-pictures-and-reviews/unnamed(2).png";
+import unnamed3 from "@/TailTown-pictures-and-reviews/unnamed(3).png";
+import unnamed4 from "@/TailTown-pictures-and-reviews/unnamed(4).png";
+import unnamed6 from "@/TailTown-pictures-and-reviews/unnamed(6).png";
+import unnamed7 from "@/TailTown-pictures-and-reviews/unnamed(7).png";
+import unnamed8 from "@/TailTown-pictures-and-reviews/unnamed(8).png";
+import unnamed9 from "@/TailTown-pictures-and-reviews/unnamed(9).png";
+import unnamed10 from "@/TailTown-pictures-and-reviews/unnamed(10).png";
+import unnamed11 from "@/TailTown-pictures-and-reviews/unnamed(11).png";
+import unnamed12 from "@/TailTown-pictures-and-reviews/unnamed(12).png";
+import images1 from "@/TailTown-pictures-and-reviews/images(1).jpg";
+import hedgehog from "@/TailTown-pictures-and-reviews/hedgehog.jpg";
+
+const max = images2;
+const mango = images3;
+const golide = unnamed5;
+const steve = unnamed;
+const jellybean = unnamed1;
+const willow = unnamed2;
+const gertrude = unnamed3;
+const rio = unnamed4;
+const frosty = unnamed6;
+const sprinkles = unnamed7;
+const mikey = unnamed8;
+const jimmy = unnamed9;
+const jerry = unnamed10;
+const hunter = unnamed11;
+const slithers = unnamed12;
+const iggy = images1;
+const hedge = hedgehog;
+
 
 interface Post {
   id: string;
@@ -38,12 +69,12 @@ const mockPosts: Post[] = [
     type: "photo",
     author: {
       name: "Sarah M.",
-      avatar: dogGolden,
+      avatar: max,
       petName: "Max",
       neighborhood: "Oakwood",
     },
     content: "Someone's loving this sunny afternoon! Max couldn't resist rolling in the freshly cut grass 🌿",
-    image: dogGolden,
+    image: images(2),
     boops: 42,
     comments: 8,
     timeAgo: "2h ago",
@@ -54,13 +85,14 @@ const mockPosts: Post[] = [
     type: "milestone",
     author: {
       name: "Mike T.",
-      avatar: dogFrenchie,
-      petName: "Biscuit",
+      avatar: mango,
+      petName: "Mango",
       neighborhood: "Downtown",
     },
-    content: "After 3 weeks of training, someone finally learned to catch! So proud of my little champion 🏆",
+    content: "Mango here's chillin by the window side!🐾",
     image: dogFrenchie,
-    milestone: "Biscuit learned to catch!",
+    milestone: "Chillin' Pro",
+    image: images(3),
     boops: 127,
     comments: 23,
     timeAgo: "4h ago",
@@ -71,11 +103,12 @@ const mockPosts: Post[] = [
     type: "text",
     author: {
       name: "Emily R.",
-      avatar: catOrange,
-      petName: "Mango",
+      avatar: golide,
+      petName: "Goldie",
       neighborhood: "Riverside",
     },
-    content: "Does anyone else's cat judge them for sleeping in on weekends? Mango literally sat on my face at 6am demanding breakfast. I swear he has a tiny alarm clock hidden somewhere 😴🐱",
+    content: "Fish are such fascinating pets! Goldie has been swimming around all day, exploring every corner of her small bowl. 🐠 Anyone else have tips on creating a more enriching environment for their aquatic friends?",
+    image: unnamed(5),
     boops: 89,
     comments: 31,
     timeAgo: "5h ago",
@@ -86,12 +119,12 @@ const mockPosts: Post[] = [
     type: "photo",
     author: {
       name: "Lisa K.",
-      avatar: dogCorgi,
-      petName: "Buttercup",
+      avatar: steve,
+      petName: "Steve",
       neighborhood: "Maple Heights",
     },
-    content: "The famous corgi butt making an appearance on our evening walk! 🍑",
-    image: dogCorgi,
+content: "steve is literally just a sentient potato who's really majestic, and his real cuteness in his cheeks!!! 10/10 no thoughts, just gives steve harrington vibes, and a total main character moment every time he finds a sunflower seed",
+    image: unnamed, 
     boops: 234,
     comments: 45,
     timeAgo: "6h ago",
@@ -101,13 +134,13 @@ const mockPosts: Post[] = [
     id: "5",
     type: "photo",
     author: {
-      name: "Tom B.",
-      avatar: dogBorderCollie,
-      petName: "Scout",
+      name: "David L.",
+      avatar: jellybean,
+      petName: "Jellybean",
       neighborhood: "Oakwood",
     },
-    content: "Best trail buddy I could ask for! Anyone want to join us for a hike next Saturday? 🥾🐕",
-    image: dogBorderCollie,
+    content: "jellybean just turned 3 years!! he is a very active male hamster.  he is very healthy and runs in his hamster wheel all day.",
+    image: unnamed(1),
     boops: 56,
     comments: 12,
     timeAgo: "8h ago",
@@ -118,16 +151,193 @@ const mockPosts: Post[] = [
     type: "text",
     author: {
       name: "Anna P.",
-      avatar: catOrange,
-      petName: "Whiskers",
+      avatar: willow,
+      petName: "Willow",
       neighborhood: "Downtown",
     },
-    content: "PSA: The new organic cat food at Petland is amazing! Whiskers has been so much more energetic since we switched. Highly recommend for senior cats! 🌟",
+    content: "Willow has been such a curious little bunny lately! She's been hopping around the house, exploring every nook and cranny. 🐇 Anyone else have a bunny with an adventurous spirit?",
+    image: unnamed(2),
     boops: 18,
     comments: 7,
     timeAgo: "12h ago",
     isLocal: true,
   },
+  {
+    id: "7",
+    type: "photo",  
+    author: {
+      name: "Sophia G.",
+      avatar: gertrude,
+      petName: "Gertrude",
+      neighborhood: "SunnyVale",
+    },
+    content: "Gertrude here is living her best life soaking up the sun!",
+    image: unnamed(3),
+    boops: 75,
+    comments: 15,
+    timeAgo: "14h ago",
+    isLocal: false,
+  },
+  {
+    id: "8",
+    type: "photo",  
+    author: {
+      name: "James B.",
+      avatar: rio,
+      petName: "Rio",
+      neighborhood: "Chilltown",
+    },
+    content: "Rio is a parrot who loves to dance to music! Whenever I play some tunes, he starts bobbing his head and moving his feet. It's the cutest thing ever! ", 
+    image: unnamed(4),
+    boops: 64,
+    comments: 9,
+    timeAgo: "16h ago",
+    isLocal: true,
+  },
+  {
+    id: "9",
+    type: "photo",  
+    author: {
+      name: "Olivia S.",
+      avatar: frosty,
+      petName: "Frosty",
+      neighborhood: "Paris",
+    },
+    content: "Frosty the husky pup enjoying his first snow day!",
+    image: unnamed(6),
+    boops: 89,
+    comments: 14,
+    timeAgo: "18h ago",
+    isLocal: false,
+  },
+  {
+    id: "10",
+    type: "photo",
+    author: {
+      name: "Ethan W.",
+      avatar: sprinkles,
+      petName: "Sprinkles",
+      neighborhood: "Oakwood",
+    },
+    content: "Sprinkles Scorpion is ready for his close-up!",
+    image: unnamed(7),
+    boops: 34,
+    comments: 5,
+    timeAgo: "20h ago",
+    isLocal: true,
+  },
+  {
+    id: "11",
+    type: "photo",  
+    author: {
+      name: "Mia H.",
+      avatar: mikey,
+      petName: "Mikey",
+      neighborhood: "Downtown",
+    },
+    content: "Mikey the lizard basking under his heat lamp!",
+    image: unnamed(8),
+    boops: 47,
+    comments: 11,
+    timeAgo: "22h ago",
+    isLocal: false,
+  },
+  {
+    id: "12",
+    type: "photo",
+    author: {
+      name: "Noah D.",
+      avatar: jimmy,
+      petName: "Jimmy",
+      neighborhood: "Riverside",
+    },
+    content: "Jimmy the pomerianian looking dapper as ever!",
+    image: unnamed(9),
+    boops: 29,
+    comments: 6,
+    timeAgo: "1d ago",
+    isLocal: true,
+  },
+  {
+    id: "13",
+    type: "photo", 
+    author: {
+      name: "Ava C.",
+      avatar: jerry,
+      petName: "Jerry",
+      neighborhood: "Maple Heights",
+    },
+    content: "Jerry the mouse is the cutest and softest thing alive!",
+    image: unnamed(10),
+    boops: 53,
+    comments: 13,
+    timeAgo: "1d ago",
+    isLocal: false,
+  },
+  {
+    id: "14",
+    type: "photo",
+    author: {
+      name: "Liam S.",
+      avatar: hunter,
+      petName: "Hunter",
+      neighborhood: "SunnyVale",
+    },
+    content: "Hunter the ferret is always up to some mischief!",
+    image: unnamed(11),
+    boops: 61, 
+    comments: 10,
+    timeAgo: "1d ago",
+    isLocal: true,
+  },
+  {
+    id: "15",
+    type: "photo", 
+    author: {
+      name: "Isabella M.",
+      avatar: slithers,
+      petName: "Slithers",
+      neighborhood: "Chilltown",
+    },
+    content: "Slithers the snake is looking extra shiny after his shed!",
+    image: unnamed(12),
+    boops: 22,
+    comments: 4,
+    timeAgo: "2d ago",
+    isLocal: false,
+  },
+  {
+    id: "16",
+    type: "photo",    
+    author: {
+      name: "Lucas J.",
+      avatar: iggy,
+      petName: "Iggy",
+      neighborhood: "Oakwood",
+    },
+    content: "Iggy the iguana is loving his new basking spot!",
+    image: images(1),
+    boops: 38,
+    comments: 7,
+    timeAgo: "2d ago",
+    isLocal: true,
+  },
+  {
+    id: "17",
+    type: "photo",  
+    author: {
+      name: "Charlotte V.",
+      avatar: hedge,
+      petName: "Hedge",
+      neighborhood: "Downtown",  
+    },
+    content: "Hedge the hedgehog is ready for his close-up!",
+    image: hedgehog,
+    boops: 45,
+    comments: 9,
+    timeAgo: "2d ago",
+    isLocal: false,
+  },  
 ];
 
 const Index = () => {
