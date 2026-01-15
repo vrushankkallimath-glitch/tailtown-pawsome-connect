@@ -75,26 +75,30 @@ export const PostCard = ({
 }: PostCardProps) => {
   const [saved, setSaved] = useState(false);
 
-  // Some browsers won't fire onLoad for cached images reliably.
-  // We keep a ref and mark as loaded if it's already complete.
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
+
+  const normalizeAssetUrl = (src: string) =>
+    src.replace(/\(/g, "%28").replace(/\)/g, "%29");
+
+  const avatarSrc = normalizeAssetUrl(author.avatar);
+  const postImageSrc = image ? normalizeAssetUrl(image) : undefined;
 
   const [commentsOpen, setCommentsOpen] = useState(false);
 
   useEffect(() => {
     setImageLoaded(false);
     setImageError(false);
-  }, [image]);
+  }, [postImageSrc]);
 
   useEffect(() => {
-    if (!image) return;
+    if (!postImageSrc) return;
     const el = imageRef.current;
     if (el && el.complete && el.naturalWidth > 0) {
       setImageLoaded(true);
     }
-  }, [image]);
+  }, [postImageSrc]);
 
   return (
     <motion.article
@@ -110,7 +114,7 @@ export const PostCard = ({
           >
             <div className="w-11 h-11 avatar-ring bg-secondary/20">
               <img
-                src={author.avatar}
+                src={avatarSrc}
                 alt={author.petName}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
@@ -159,7 +163,7 @@ export const PostCard = ({
       )}
 
       {/* Image */}
-      {image && (
+      {postImageSrc && (
         <motion.div
           className="relative overflow-hidden cursor-pointer group"
           whileHover={{ scale: 1.01 }}
@@ -175,13 +179,13 @@ export const PostCard = ({
           ) : (
             <img
               ref={imageRef}
-              src={image}
+              src={postImageSrc}
               alt="Post content"
               loading="lazy"
               className={cn(
                 "w-full h-48 object-cover transition-all duration-500",
                 "group-hover:brightness-105",
-                imageLoaded ? "opacity-100" : "opacity-0 h-0"
+                imageLoaded ? "opacity-100" : "opacity-0"
               )}
               onLoad={() => setImageLoaded(true)}
               onError={() => {
