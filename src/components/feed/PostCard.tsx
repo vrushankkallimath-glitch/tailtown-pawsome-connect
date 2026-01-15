@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Share2, MoreHorizontal, Award, Camera, FileText, Bookmark } from "lucide-react";
+import {
+  MessageCircle,
+  Share2,
+  MoreHorizontal,
+  Award,
+  Camera,
+  FileText,
+  Bookmark,
+} from "lucide-react";
 import { BoopButton } from "./BoopButton";
 import { CommentsSection } from "./CommentsSection";
 import { cn } from "@/lib/utils";
@@ -43,7 +51,7 @@ const PostTypeBadge = ({ type }: { type: PostType }) => {
   };
 
   return (
-    <motion.span 
+    <motion.span
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-sage-light text-primary"
@@ -66,8 +74,27 @@ export const PostCard = ({
   milestone,
 }: PostCardProps) => {
   const [saved, setSaved] = useState(false);
+
+  // Some browsers won't fire onLoad for cached images reliably.
+  // We keep a ref and mark as loaded if it's already complete.
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
   const [commentsOpen, setCommentsOpen] = useState(false);
+
+  useEffect(() => {
+    setImageLoaded(false);
+    setImageError(false);
+  }, [image]);
+
+  useEffect(() => {
+    if (!image) return;
+    const el = imageRef.current;
+    if (el && el.complete && el.naturalWidth > 0) {
+      setImageLoaded(true);
+    }
+  }, [image]);
 
   return (
     <motion.article
@@ -77,7 +104,7 @@ export const PostCard = ({
       {/* Header */}
       <div className="p-4 pb-3">
         <div className="flex items-start justify-between">
-          <motion.div 
+          <motion.div
             className="flex items-center gap-3 cursor-pointer group"
             whileHover={{ x: 2 }}
           >
@@ -85,6 +112,7 @@ export const PostCard = ({
               <img
                 src={author.avatar}
                 alt={author.petName}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
@@ -97,7 +125,7 @@ export const PostCard = ({
               </p>
             </div>
           </motion.div>
-          <motion.button 
+          <motion.button
             className="btn-icon"
             whileHover={{ rotate: 90 }}
             whileTap={{ scale: 0.9 }}
@@ -114,13 +142,13 @@ export const PostCard = ({
 
       {/* Milestone Banner */}
       {type === "milestone" && milestone && (
-        <motion.div 
+        <motion.div
           className="mx-4 mb-3 p-3 rounded-xl bg-terracotta-light border border-secondary/20"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <motion.p 
+          <motion.p
             className="text-sm font-display font-bold text-secondary text-center"
             animate={{ scale: [1, 1.02, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -132,23 +160,37 @@ export const PostCard = ({
 
       {/* Image */}
       {image && (
-        <motion.div 
+        <motion.div
           className="relative overflow-hidden cursor-pointer group"
           whileHover={{ scale: 1.01 }}
         >
-          {!imageLoaded && (
+          {!imageLoaded && !imageError && (
             <div className="w-full h-48 bg-sage-light animate-pulse" />
           )}
-          <img
-            src={image}
-            alt="Post content"
-            className={cn(
-              "w-full object-cover transition-all duration-500",
-              "group-hover:brightness-105",
-              imageLoaded ? "opacity-100" : "opacity-0 h-0"
-            )}
-            onLoad={() => setImageLoaded(true)}
-          />
+
+          {imageError ? (
+            <div className="w-full h-48 bg-sage-light flex items-center justify-center text-xs text-muted-foreground">
+              Image unavailable
+            </div>
+          ) : (
+            <img
+              ref={imageRef}
+              src={image}
+              alt="Post content"
+              loading="lazy"
+              className={cn(
+                "w-full h-48 object-cover transition-all duration-500",
+                "group-hover:brightness-105",
+                imageLoaded ? "opacity-100" : "opacity-0 h-0"
+              )}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => {
+                setImageError(true);
+                setImageLoaded(true);
+              }}
+            />
+          )}
+
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </motion.div>
       )}
@@ -161,12 +203,12 @@ export const PostCard = ({
       {/* Actions */}
       <div className="px-4 pb-4 flex items-center gap-2">
         <BoopButton initialCount={boops} />
-        
-        <motion.button 
+
+        <motion.button
           className={cn(
             "btn-boop",
-            commentsOpen 
-              ? "bg-primary text-primary-foreground" 
+            commentsOpen
+              ? "bg-primary text-primary-foreground"
               : "bg-sage-light text-muted-foreground hover:bg-primary hover:text-primary-foreground"
           )}
           whileHover={{ scale: 1.05 }}
@@ -178,9 +220,9 @@ export const PostCard = ({
           <MessageCircle className="w-4 h-4" />
           <span>{comments}</span>
         </motion.button>
-        
+
         <div className="ml-auto flex items-center gap-1">
-          <motion.button 
+          <motion.button
             className="btn-icon"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -188,20 +230,20 @@ export const PostCard = ({
             aria-label={saved ? "Unsave post" : "Save post"}
             aria-pressed={saved}
           >
-            <Bookmark 
+            <Bookmark
               className={cn(
                 "w-4 h-4 transition-colors",
                 saved ? "fill-secondary text-secondary" : "text-muted-foreground"
-              )} 
+              )}
             />
           </motion.button>
-          <motion.button 
+          <motion.button
             className="btn-icon"
             whileHover={{ scale: 1.1, rotate: 15 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Share post"
           >
-          <Share2 className="w-4 h-4 text-muted-foreground" />
+            <Share2 className="w-4 h-4 text-muted-foreground" />
           </motion.button>
         </div>
       </div>
@@ -211,3 +253,4 @@ export const PostCard = ({
     </motion.article>
   );
 };
+
