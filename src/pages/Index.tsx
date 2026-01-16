@@ -8,22 +8,22 @@ import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
 // Import images
-import images2 from "@/assets/images-2.jpg";
-import images3 from "@/assets/images-3.jpg";
-import unnamed5 from "@/assets/unnamed-5.png";
+import images1 from "@/assets/images1.jpg";
+import images2 from "@/assets/images2.jpg";
+import images3 from "@/assets/images3.jpg";
 import unnamed from "@/assets/unnamed.png";
-import unnamed1 from "@/assets/unnamed-1.png";
-import unnamed2 from "@/assets/unnamed-2.png";
-import unnamed3 from "@/assets/unnamed-3.png";
-import unnamed4 from "@/assets/unnamed-4.png";
-import unnamed6 from "@/assets/unnamed-6.png";
-import unnamed7 from "@/assets/unnamed-7.png";
-import unnamed8 from "@/assets/unnamed-8.png";
-import unnamed9 from "@/assets/unnamed-9.png";
-import unnamed10 from "@/assets/unnamed-10.png";
-import unnamed11 from "@/assets/unnamed-11.png";
-import unnamed12 from "@/assets/unnamed-12.png";
-import images1 from "@/assets/images-1.jpg";
+import unnamed1 from "@/assets/unnamed1.png";
+import unnamed2 from "@/assets/unnamed2.png";
+import unnamed3 from "@/assets/unnamed3.png";
+import unnamed4 from "@/assets/unnamed4.png";
+import unnamed5 from "@/assets/unnamed5.png";
+import unnamed6 from "@/assets/unnamed6.png";
+import unnamed7 from "@/assets/unnamed7.png";
+import unnamed8 from "@/assets/unnamed8.png";
+import unnamed9 from "@/assets/unnamed9.png";
+import unnamed10 from "@/assets/unnamed10.png";
+import unnamed11 from "@/assets/unnamed11.png";
+import unnamed12 from "@/assets/unnamed12.png";
 import hedgehog from "@/assets/hedgehog.jpg";
 
 const max = images2;
@@ -90,7 +90,7 @@ const mockPosts: Post[] = [
       neighborhood: "Downtown",
     },
     content: "Mango here's chillin by the window side!🐾",
-    image: images3,
+    image: mango,
     milestone: "Chillin' Pro",
     boops: 127,
     comments: 23,
@@ -107,7 +107,7 @@ const mockPosts: Post[] = [
       neighborhood: "Riverside",
     },
     content: "Fish are such fascinating pets! Goldie has been swimming around all day, exploring every corner of her small bowl. 🐠 Anyone else have tips on creating a more enriching environment for their aquatic friends?",
-    image: unnamed5,
+    image: golide,
     boops: 89,
     comments: 31,
     timeAgo: "5h ago",
@@ -123,7 +123,7 @@ const mockPosts: Post[] = [
       neighborhood: "Maple Heights",
     },
 content: "steve is literally just a sentient potato who's really majestic, and his real cuteness in his cheeks!!! 10/10 no thoughts, just gives steve harrington vibes, and a total main character moment every time he finds a sunflower seed",
-    image: unnamed, 
+    image: steve, 
     boops: 234,
     comments: 45,
     timeAgo: "6h ago",
@@ -139,7 +139,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Oakwood",
     },
     content: "jellybean just turned 3 years!! he is a very active male hamster.  he is very healthy and runs in his hamster wheel all day.",
-    image: unnamed1,
+    image: jellybean,
     boops: 56,
     comments: 12,
     timeAgo: "8h ago",
@@ -155,7 +155,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Downtown",
     },
     content: "Willow has been such a curious little bunny lately! She's been hopping around the house, exploring every nook and cranny. 🐇 Anyone else have a bunny with an adventurous spirit?",
-    image: unnamed2,
+    image: willow,
     boops: 18,
     comments: 7,
     timeAgo: "12h ago",
@@ -171,7 +171,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "SunnyVale",
     },
     content: "Gertrude here is living her best life soaking up the sun!",
-    image: unnamed3,
+    image: gertrude,
     boops: 75,
     comments: 15,
     timeAgo: "14h ago",
@@ -187,7 +187,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Chilltown",
     },
     content: "Rio is a parrot who loves to dance to music! Whenever I play some tunes, he starts bobbing his head and moving his feet. It's the cutest thing ever! ", 
-    image: unnamed4,
+    image: rio,
     boops: 64,
     comments: 9,
     timeAgo: "16h ago",
@@ -203,7 +203,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Paris",
     },
     content: "Frosty the husky pup enjoying his first snow day!",
-    image: unnamed6,
+    image: frosty,
     boops: 89,
     comments: 14,
     timeAgo: "18h ago",
@@ -219,7 +219,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Oakwood",
     },
     content: "Sprinkles Scorpion is ready for his close-up!",
-    image: unnamed7,
+    image: sprinkles,
     boops: 34,
     comments: 5,
     timeAgo: "20h ago",
@@ -235,7 +235,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Downtown",
     },
     content: "Mikey the lizard basking under his heat lamp!",
-    image: unnamed8,
+    image: mikey,
     boops: 47,
     comments: 11,
     timeAgo: "22h ago",
@@ -251,7 +251,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Riverside",
     },
     content: "Jimmy the pomerianian looking dapper as ever!",
-    image: unnamed9,
+    image: jimmy,
     boops: 29,
     comments: 6,
     timeAgo: "1d ago",
@@ -267,7 +267,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Maple Heights",
     },
     content: "Jerry the mouse is the cutest and softest thing alive!",
-    image: unnamed10,
+    image: jerry,
     boops: 53,
     comments: 13,
     timeAgo: "1d ago",
@@ -283,7 +283,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "SunnyVale",
     },
     content: "Hunter the ferret is always up to some mischief!",
-    image: unnamed11,
+    image: hunter,
     boops: 61, 
     comments: 10,
     timeAgo: "1d ago",
@@ -299,7 +299,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Chilltown",
     },
     content: "Slithers the snake is looking extra shiny after his shed!",
-    image: unnamed12,
+    image: slithers,
     boops: 22,
     comments: 4,
     timeAgo: "2d ago",
@@ -315,7 +315,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       neighborhood: "Oakwood",
     },
     content: "Iggy the iguana is loving his new basking spot!",
-    image: images1,
+    image: iggy,
     boops: 38,
     comments: 7,
     timeAgo: "2d ago",
@@ -402,4 +402,5 @@ const Index = () => {
 };
 
 export default Index;
+
 
