@@ -7,24 +7,24 @@ import { SOSBanner } from "@/components/feed/SOSBanner";
 import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
-// Import images
-import images1 from "@/assets/images1.jpg";
-import images2 from "@/assets/images2.jpg";
-import images3 from "@/assets/images3.jpg";
-import unnamed from "@/assets/unnamed.png";
-import unnamed1 from "@/assets/unnamed1.png";
-import unnamed2 from "@/assets/unnamed2.png";
-import unnamed3 from "@/assets/unnamed3.png";
-import unnamed4 from "@/assets/unnamed4.png";
-import unnamed5 from "@/assets/unnamed5.png";
-import unnamed6 from "@/assets/unnamed6.png";
-import unnamed7 from "@/assets/unnamed7.png";
-import unnamed8 from "@/assets/unnamed8.png";
-import unnamed9 from "@/assets/unnamed9.png";
-import unnamed10 from "@/assets/unnamed10.png";
-import unnamed11 from "@/assets/unnamed11.png";
-import unnamed12 from "@/assets/unnamed12.png";
-import hedgehog from "@/assets/hedgehog.jpg";
+// Placeholder images from placeholder.com
+const images1 = "https://images.unsplash.com/photo-1552053831-71594a27c62d?w=500&h=500&fit=crop";
+const images2 = "https://images.unsplash.com/photo-1633722715463-d30628519d50?w=500&h=500&fit=crop";
+const images3 = "https://images.unsplash.com/photo-1568938764329-f61523b1d2e4?w=500&h=500&fit=crop";
+const unnamed = "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=500&h=500&fit=crop";
+const unnamed1 = "https://images.unsplash.com/photo-1535241749838-299f5865b642?w=500&h=500&fit=crop";
+const unnamed2 = "https://images.unsplash.com/photo-1570158268183-d296b2892211?w=500&h=500&fit=crop";
+const unnamed3 = "https://images.unsplash.com/photo-1567439034433-c48137f4d310?w=500&h=500&fit=crop";
+const unnamed4 = "https://images.unsplash.com/photo-1469022785867-39a639ab983f?w=500&h=500&fit=crop";
+const unnamed5 = "https://images.unsplash.com/photo-1583511655857-d19db992cb74?w=500&h=500&fit=crop";
+const unnamed6 = "https://images.unsplash.com/photo-1633056452045-73263daa5c34?w=500&h=500&fit=crop";
+const unnamed7 = "https://images.unsplash.com/photo-1623810914620-501a3b22e94b?w=500&h=500&fit=crop";
+const unnamed8 = "https://images.unsplash.com/photo-1597955216563-430f63602d4b?w=500&h=500&fit=crop";
+const unnamed9 = "https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=500&h=500&fit=crop";
+const unnamed10 = "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=500&h=500&fit=crop";
+const unnamed11 = "https://images.unsplash.com/photo-1615751072765-f7fdfcf0f445?w=500&h=500&fit=crop";
+const unnamed12 = "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=500&h=500&fit=crop";
+const hedgehog = "https://images.unsplash.com/photo-1608848461950-0fed8e8f50aa?w=500&h=500&fit=crop";
 
 const max = images2;
 const mango = images3;
