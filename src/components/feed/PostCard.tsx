@@ -79,26 +79,23 @@ export const PostCard = ({
   const [imageError, setImageError] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  const normalizeAssetUrl = (src: string) =>
-    src.replace(/\(/g, "%28").replace(/\)/g, "%29");
-
-  const avatarSrc = normalizeAssetUrl(author.avatar);
-  const postImageSrc = image ? normalizeAssetUrl(image) : undefined;
+  const avatarSrc = author.avatar;
+  const postImageSrc = image;
 
   const [commentsOpen, setCommentsOpen] = useState(false);
 
   useEffect(() => {
     setImageLoaded(false);
     setImageError(false);
-  }, [postImageSrc]);
+  }, [image]);
 
   useEffect(() => {
-    if (!postImageSrc) return;
+    if (!image) return;
     const el = imageRef.current;
     if (el && el.complete && el.naturalWidth > 0) {
       setImageLoaded(true);
     }
-  }, [postImageSrc]);
+  }, [image]);
 
   return (
     <motion.article
