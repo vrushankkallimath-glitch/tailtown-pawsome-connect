@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { AddPetModal } from "@/components/modals/AddPetModal";
 import { EditProfileModal } from "@/components/modals/EditProfileModal";
 
-import dogGolden from "@/assets/images(2).jpg";
+import dogGolden from "@/assets/images-2.jpg";
 import catOrange from "@/assets/unnamed.png";
 
 const userProfile = {
