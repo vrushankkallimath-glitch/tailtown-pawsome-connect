@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { AddPetModal } from "@/components/modals/AddPetModal";
 import { EditProfileModal } from "@/components/modals/EditProfileModal";
 
-const dogGolden = "https://images.unsplash.com/photo-1633722715463-d30628519d50?w=400&h=400&fit=crop";
-const catOrange = "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400&h=400&fit=crop";
+import dogGolden from "@/assets/images-2.jpg";
+import catOrange from "@/assets/unnamed.png";
 
 const userProfile = {
   name: "Jamie Wilson",
