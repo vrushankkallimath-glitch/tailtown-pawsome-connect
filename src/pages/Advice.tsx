@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { MessageCircle, CheckCircle, ChevronRight } from "lucide-react";
+import { MessageCircle, CheckCircle, ChevronRight, Plus, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
+import { AskQuestionModal } from "@/components/modals/AskQuestionModal";
+import { ReportLostPetModal } from "@/components/modals/ReportLostPetModal";
+import { toast } from "sonner";
 
 const categories = [
   { id: "health", label: "🏥 Health", count: 42 },
@@ -14,6 +18,7 @@ const mockQuestions = [
     id: "1",
     title: "Best flea treatment for sensitive skin?",
     category: "Health",
+    categoryId: "health",
     author: "Emily R.",
     answers: 12,
     hasTrustedAnswer: true,
@@ -23,6 +28,7 @@ const mockQuestions = [
     id: "2",
     title: "How to stop leash pulling during walks?",
     category: "Training",
+    categoryId: "training",
     author: "Tom B.",
     answers: 8,
     hasTrustedAnswer: false,
@@ -32,6 +38,7 @@ const mockQuestions = [
     id: "3",
     title: "Grain-free vs regular kibble - thoughts?",
     category: "Nutrition",
+    categoryId: "nutrition",
     author: "Anna P.",
     answers: 23,
     hasTrustedAnswer: true,
@@ -40,6 +47,27 @@ const mockQuestions = [
 ];
 
 const Advice = () => {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [askModalOpen, setAskModalOpen] = useState(false);
+  const [lostPetModalOpen, setLostPetModalOpen] = useState(false);
+
+  const filteredQuestions = activeCategory
+    ? mockQuestions.filter(q => q.categoryId === activeCategory)
+    : mockQuestions;
+
+  const handleCategoryClick = (categoryId: string) => {
+    if (activeCategory === categoryId) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(categoryId);
+      toast.info(`Showing ${categories.find(c => c.id === categoryId)?.label} questions`);
+    }
+  };
+
+  const handleQuestionClick = (question: typeof mockQuestions[0]) => {
+    toast.info(`Opening "${question.title}"`);
+  };
+
   return (
     <AppLayout>
       <div className="max-w-2xl mx-auto px-4 py-6">
@@ -48,26 +76,48 @@ const Advice = () => {
           <p className="text-muted-foreground">Get advice from fellow pet parents!</p>
         </div>
 
+        {/* Lost Pet Alert Button */}
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => setLostPetModalOpen(true)}
+          className="w-full mb-4 p-3 rounded-xl bg-destructive/10 border border-destructive/20 flex items-center gap-3 hover:bg-destructive/15 transition-colors"
+        >
+          <AlertTriangle className="w-5 h-5 text-destructive" />
+          <span className="font-semibold text-destructive">Report a Lost Pet</span>
+          <ChevronRight className="w-5 h-5 text-destructive ml-auto" />
+        </motion.button>
+
         {/* Categories */}
         <div className="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide">
           {categories.map((cat) => (
-            <button
+            <motion.button
               key={cat.id}
-              className="flex-shrink-0 px-4 py-2 rounded-full bg-sage-light text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleCategoryClick(cat.id)}
+              className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeCategory === cat.id
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-sage-light hover:bg-primary/20"
+              }`}
             >
               {cat.label} ({cat.count})
-            </button>
+            </motion.button>
           ))}
         </div>
 
         {/* Questions */}
         <div className="space-y-3">
-          {mockQuestions.map((question, index) => (
+          {filteredQuestions.map((question, index) => (
             <motion.div
               key={question.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              onClick={() => handleQuestionClick(question)}
               className="card-tailtown p-4 cursor-pointer hover:shadow-tailtown-lg transition-shadow"
             >
               <div className="flex items-start gap-3">
@@ -96,7 +146,26 @@ const Advice = () => {
             </motion.div>
           ))}
         </div>
+
+        {filteredQuestions.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No questions in this category yet.</p>
+            <p className="text-sm text-muted-foreground mt-1">Be the first to ask! 🐾</p>
+          </div>
+        )}
       </div>
+
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setAskModalOpen(true)}
+        className="fixed bottom-24 right-4 md:bottom-8 md:right-8 w-14 h-14 rounded-full bg-secondary text-secondary-foreground shadow-lg flex items-center justify-center z-50"
+      >
+        <Plus className="w-6 h-6" />
+      </motion.button>
+
+      <AskQuestionModal open={askModalOpen} onOpenChange={setAskModalOpen} />
+      <ReportLostPetModal open={lostPetModalOpen} onOpenChange={setLostPetModalOpen} />
     </AppLayout>
   );
 };

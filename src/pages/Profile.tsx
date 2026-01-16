@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Settings, Edit3, Plus } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { AddPetModal } from "@/components/modals/AddPetModal";
+import { EditProfileModal } from "@/components/modals/EditProfileModal";
 
 import dogGolden from "@/assets/images(2).jpg";
 import catOrange from "@/assets/unnamed.png";
@@ -38,15 +42,18 @@ const pets = [
 ];
 
 const Profile = () => {
+  const [addPetModalOpen, setAddPetModalOpen] = useState(false);
+  const [editProfileModalOpen, setEditProfileModalOpen] = useState(false);
+
   return (
     <AppLayout>
       <div className="max-w-2xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-display text-3xl font-bold">My Pack</h1>
-          <button className="p-2 rounded-xl hover:bg-muted transition-colors">
+          <Link to="/settings" className="p-2 rounded-xl hover:bg-muted transition-colors">
             <Settings className="w-5 h-5 text-muted-foreground" />
-          </button>
+          </Link>
         </div>
 
         {/* User Card */}
@@ -65,9 +72,14 @@ const Profile = () => {
                 📍 {userProfile.neighborhood} • Member since {userProfile.memberSince}
               </p>
             </div>
-            <button className="p-2 rounded-xl hover:bg-muted transition-colors">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setEditProfileModalOpen(true)}
+              className="p-2 rounded-xl hover:bg-muted transition-colors"
+            >
               <Edit3 className="w-4 h-4 text-muted-foreground" />
-            </button>
+            </motion.button>
           </div>
 
           <div className="grid grid-cols-3 gap-4 text-center">
@@ -89,10 +101,15 @@ const Profile = () => {
         {/* Pets Section */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-display font-bold text-xl">My Pets</h2>
-          <button className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setAddPetModalOpen(true)}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium"
+          >
             <Plus className="w-4 h-4" />
             Add Pet
-          </button>
+          </motion.button>
         </div>
 
         <div className="space-y-4">
@@ -141,6 +158,13 @@ const Profile = () => {
           ))}
         </div>
       </div>
+
+      <AddPetModal open={addPetModalOpen} onOpenChange={setAddPetModalOpen} />
+      <EditProfileModal 
+        open={editProfileModalOpen} 
+        onOpenChange={setEditProfileModalOpen}
+        profile={userProfile}
+      />
     </AppLayout>
   );
 };
