@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { MobileHeader } from "@/components/feed/MobileHeader";
 import { SOSBanner } from "@/components/feed/SOSBanner";
@@ -8,23 +9,23 @@ import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
 // Import images (bundled by Vite)
-import images1 from "@/assets/images-1.jpg";
-import images2 from "@/assets/images-2.jpg";
-import images3 from "@/assets/images-3.jpg";
-import unnamed from "@/assets/unnamed.png";
-import unnamed1 from "@/assets/unnamed-1.png";
-import unnamed2 from "@/assets/unnamed-2.png";
-import unnamed3 from "@/assets/unnamed-3.png";
-import unnamed4 from "@/assets/unnamed-4.png";
-import unnamed5 from "@/assets/unnamed-5.png";
-import unnamed6 from "@/assets/unnamed-6.png";
-import unnamed7 from "@/assets/unnamed-7.png";
-import unnamed8 from "@/assets/unnamed-8.png";
-import unnamed9 from "@/assets/unnamed-9.png";
-import unnamed10 from "@/assets/unnamed-10.png";
-import unnamed11 from "@/assets/unnamed-11.png";
-import unnamed12 from "@/assets/unnamed-12.png";
-import hedgehog from "@/assets/hedgehog.jpg";
+import images1 from "../assets/images-1.jpg";
+import images2 from "../assets/images-2.jpg";
+import images3 from "../assets/images-3.jpg";
+import unnamed from "../assets/unnamed.png";
+import unnamed1 from "../assets/unnamed-1.png";
+import unnamed2 from "../assets/unnamed-2.png";
+import unnamed3 from "../assets/unnamed-3.png";
+import unnamed4 from "../assets/unnamed-4.png";
+import unnamed5 from "../assets/unnamed-5.png";
+import unnamed6 from "../assets/unnamed-6.png";
+import unnamed7 from "../assets/unnamed-7.png";
+import unnamed8 from "../assets/unnamed-8.png";
+import unnamed9 from "../assets/unnamed-9.png";
+import unnamed10 from "../assets/unnamed-10.png";
+import unnamed11 from "../assets/unnamed-11.png";
+import unnamed12 from "../assets/unnamed-12.png";
+import hedgehog from "../assets/hedgehog.jpg";
 
 const max = images2;
 const mango = images3;
@@ -392,8 +393,10 @@ const Index = () => {
       <motion.button
         whileHover={{ scale: 1.1, rotate: 90 }}
         whileTap={{ scale: 0.9 }}
+        onClick={() => toast.info("Create post coming soon")}
         className="fab-button fixed bottom-24 right-4 md:bottom-8 md:right-8 z-50 animate-pulse-glow"
         aria-label="Create new post"
+        type="button"
       >
         <Plus className="w-6 h-6" />
       </motion.button>

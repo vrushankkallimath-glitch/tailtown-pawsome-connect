@@ -1,6 +1,7 @@
 import { PawPrint, Bell, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export const MobileHeader = () => {
   return (
@@ -20,22 +21,26 @@ export const MobileHeader = () => {
         </Link>
 
         <div className="flex items-center gap-1">
-          <motion.button 
+          <motion.button
             className="btn-icon"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Search"
+            type="button"
+            onClick={() => toast.info("Search coming soon")}
           >
             <Search className="w-5 h-5 text-muted-foreground" />
           </motion.button>
-          <motion.button 
+          <motion.button
             className="btn-icon relative"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Notifications"
+            type="button"
+            onClick={() => toast.info("No new notifications")}
           >
             <Bell className="w-5 h-5 text-muted-foreground" />
-            <motion.span 
+            <motion.span
               className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}

@@ -3,8 +3,11 @@ import { Bell, Moon, Shield, HelpCircle, LogOut, ChevronRight } from "lucide-rea
 import { motion } from "framer-motion";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [locationSharing, setLocationSharing] = useState(true);
@@ -37,8 +40,21 @@ const Settings = () => {
   ];
 
   const linkItems = [
-    { icon: HelpCircle, label: "Help & Support", path: "#" },
-    { icon: LogOut, label: "Log Out", path: "#", danger: true },
+    {
+      icon: HelpCircle,
+      label: "Help & Support",
+      danger: false,
+      onClick: () => toast.info("Help & Support coming soon"),
+    },
+    {
+      icon: LogOut,
+      label: "Log Out",
+      danger: true,
+      onClick: () => {
+        toast.success("Logged out");
+        navigate("/");
+      },
+    },
   ];
 
   return (
@@ -84,6 +100,8 @@ const Settings = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: (settingsItems.length + index) * 0.1 }}
+              onClick={item.onClick}
+              type="button"
               className={`w-full card-tailtown p-4 flex items-center gap-4 ${
                 item.danger ? "hover:bg-destructive/5" : ""
               }`}

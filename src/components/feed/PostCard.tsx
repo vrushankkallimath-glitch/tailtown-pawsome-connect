@@ -9,6 +9,7 @@ import {
   FileText,
   Bookmark,
 } from "lucide-react";
+import { toast } from "sonner";
 import { BoopButton } from "./BoopButton";
 import { CommentsSection } from "./CommentsSection";
 import { cn } from "@/lib/utils";
@@ -16,11 +17,16 @@ import { cn } from "@/lib/utils";
 const coerceImgSrc = (src: unknown): string | undefined => {
   if (!src) return undefined;
   if (typeof src === "string") return src;
-  if (typeof src === "object" && src && "default" in (src as any)) {
-    const maybe = (src as any).default;
-    if (typeof maybe === "string") return maybe;
+
+  if (typeof src === "object" && src) {
+    const obj = src as Record<string, unknown>;
+    const candidates = [obj.default, obj.src, obj.url, obj.href];
+    for (const c of candidates) {
+      if (typeof c === "string") return c;
+    }
   }
-  return String(src);
+
+  return undefined;
 };
 export type PostType = "photo" | "text" | "milestone";
 
@@ -93,29 +99,26 @@ export const PostCard = ({
 
   const [commentsOpen, setCommentsOpen] = useState(false);
 
-  useEffect(() => {
-    if (!import.meta.env.DEV) return;
-    // Helps debug cases where asset imports resolve to unexpected values.
-    // eslint-disable-next-line no-console
-    console.debug("[PostCard assets]", id, {
-      avatarSrc,
-      postImageSrc,
-      typeofAvatar: typeof (author as any).avatar,
-      typeofImage: typeof (image as any),
-    });
-  }, [id, avatarSrc, postImageSrc]);
-  useEffect(() => {
-    setImageLoaded(false);
-    setImageError(false);
-  }, [image]);
+  const handleMoreOptions = () => {
+    toast.info("More options coming soon");
+  };
 
-  useEffect(() => {
-    if (!image) return;
-    const el = imageRef.current;
-    if (el && el.complete && el.naturalWidth > 0) {
-      setImageLoaded(true);
+  const handleShare = async () => {
+    const url = `${window.location.origin}/?post=${encodeURIComponent(id)}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "TailTown post", url });
+        toast.success("Shared!");
+        return;
+      }
+
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copied");
+    } catch {
+      toast.error("Couldn't share right now");
     }
-  }, [image]);
+  };
 
   return (
     <motion.article
@@ -154,6 +157,8 @@ export const PostCard = ({
             whileHover={{ rotate: 90 }}
             whileTap={{ scale: 0.9 }}
             aria-label="More options"
+            type="button"
+            onClick={handleMoreOptions}
           >
             <MoreHorizontal className="w-5 h-5 text-muted-foreground" />
           </motion.button>
@@ -277,6 +282,8 @@ export const PostCard = ({
             whileHover={{ scale: 1.1, rotate: 15 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Share post"
+            type="button"
+            onClick={handleShare}
           >
             <Share2 className="w-4 h-4 text-muted-foreground" />
           </motion.button>
