@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import avatarMax from "../../assets/images-2.jpg";
+import avatarMango from "../../assets/images-3.jpg";
+import avatarHedgehog from "../../assets/hedgehog.jpg";
+
 interface Comment {
   id: string;
   author: {
@@ -22,17 +26,19 @@ interface CommentsSectionProps {
 const mockComments: Comment[] = [
   {
     id: "1",
-    author: { name: "Max", avatar: "/placeholder.svg" },
+    author: { name: "Max", avatar: avatarMax },
     content: "So adorable! 🐾",
     timeAgo: "2m ago",
   },
   {
     id: "2",
-    author: { name: "Bella", avatar: "/placeholder.svg" },
+    author: { name: "Bella", avatar: avatarMango },
     content: "We should have a playdate!",
     timeAgo: "5m ago",
   },
 ];
+
+const currentUserAvatar = avatarHedgehog;
 
 export const CommentsSection = ({ postId, initialComments, isOpen }: CommentsSectionProps) => {
   const [comments, setComments] = useState<Comment[]>(initialComments || mockComments);
@@ -48,7 +54,7 @@ export const CommentsSection = ({ postId, initialComments, isOpen }: CommentsSec
     // Simulate adding a comment
     const comment: Comment = {
       id: Date.now().toString(),
-      author: { name: "You", avatar: "/placeholder.svg" },
+      author: { name: "You", avatar: currentUserAvatar },
       content: newComment.trim(),
       timeAgo: "Just now",
     };
@@ -85,6 +91,9 @@ export const CommentsSection = ({ postId, initialComments, isOpen }: CommentsSec
                       <img
                         src={comment.author.avatar}
                         alt={comment.author.name}
+                        onError={(e) => {
+                          e.currentTarget.src = "/placeholder.svg";
+                        }}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -120,8 +129,11 @@ export const CommentsSection = ({ postId, initialComments, isOpen }: CommentsSec
             <form onSubmit={handleSubmit} className="flex gap-2">
               <div className="w-8 h-8 rounded-full overflow-hidden bg-sage-light flex-shrink-0">
                 <img
-                  src="/placeholder.svg"
+                  src={currentUserAvatar}
                   alt="Your avatar"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                   className="w-full h-full object-cover"
                 />
               </div>
