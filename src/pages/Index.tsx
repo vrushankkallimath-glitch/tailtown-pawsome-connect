@@ -8,22 +8,22 @@ import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
 // Import images
-import images1 from "@/assets/images1.jpg";
-import images2 from "@/assets/images2.jpg";
-import images3 from "@/assets/images3.jpg";
+import images1 from "@/assets/images-1.jpg";
+import images2 from "@/assets/images-2.jpg";
+import images3 from "@/assets/images-3.jpg";
 import unnamed from "@/assets/unnamed.png";
-import unnamed1 from "@/assets/unnamed1.png";
-import unnamed2 from "@/assets/unnamed2.png";
-import unnamed3 from "@/assets/unnamed3.png";
-import unnamed4 from "@/assets/unnamed4.png";
-import unnamed5 from "@/assets/unnamed5.png";
-import unnamed6 from "@/assets/unnamed6.png";
-import unnamed7 from "@/assets/unnamed7.png";
-import unnamed8 from "@/assets/unnamed8.png";
-import unnamed9 from "@/assets/unnamed9.png";
-import unnamed10 from "@/assets/unnamed10.png";
-import unnamed11 from "@/assets/unnamed11.png";
-import unnamed12 from "@/assets/unnamed12.png";
+import unnamed1 from "@/assets/unnamed-1.png";
+import unnamed2 from "@/assets/unnamed-2.png";
+import unnamed3 from "@/assets/unnamed-3.png";
+import unnamed4 from "@/assets/unnamed-4.png";
+import unnamed5 from "@/assets/unnamed-5.png";
+import unnamed6 from "@/assets/unnamed-6.png";
+import unnamed7 from "@/assets/unnamed-7.png";
+import unnamed8 from "@/assets/unnamed-8.png";
+import unnamed9 from "@/assets/unnamed-9.png";
+import unnamed10 from "@/assets/unnamed-10.png";
+import unnamed11 from "@/assets/unnamed-11.png";
+import unnamed12 from "@/assets/unnamed-12.png";
 import hedgehog from "@/assets/hedgehog.jpg";
 
 const max = images2;

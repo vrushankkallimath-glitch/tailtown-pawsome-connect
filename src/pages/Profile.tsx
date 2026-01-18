@@ -126,6 +126,10 @@ const Profile = () => {
                   <img
                     src={pet.image}
                     alt={pet.name}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
                     className="w-full h-full object-cover"
                   />
                 </div>
