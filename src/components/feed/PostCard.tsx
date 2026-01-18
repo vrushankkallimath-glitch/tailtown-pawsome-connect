@@ -13,6 +13,15 @@ import { BoopButton } from "./BoopButton";
 import { CommentsSection } from "./CommentsSection";
 import { cn } from "@/lib/utils";
 
+const coerceImgSrc = (src: unknown): string | undefined => {
+  if (!src) return undefined;
+  if (typeof src === "string") return src;
+  if (typeof src === "object" && src && "default" in (src as any)) {
+    const maybe = (src as any).default;
+    if (typeof maybe === "string") return maybe;
+  }
+  return String(src);
+};
 export type PostType = "photo" | "text" | "milestone";
 
 interface PostCardProps {
@@ -79,11 +88,22 @@ export const PostCard = ({
   const [imageError, setImageError] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  const avatarSrc = author.avatar;
-  const postImageSrc = image;
+  const avatarSrc = coerceImgSrc(author.avatar) ?? "/placeholder.svg";
+  const postImageSrc = coerceImgSrc(image);
 
   const [commentsOpen, setCommentsOpen] = useState(false);
 
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    // Helps debug cases where asset imports resolve to unexpected values.
+    // eslint-disable-next-line no-console
+    console.debug("[PostCard assets]", id, {
+      avatarSrc,
+      postImageSrc,
+      typeofAvatar: typeof (author as any).avatar,
+      typeofImage: typeof (image as any),
+    });
+  }, [id, avatarSrc, postImageSrc]);
   useEffect(() => {
     setImageLoaded(false);
     setImageError(false);
@@ -114,6 +134,9 @@ export const PostCard = ({
                 src={avatarSrc}
                 alt={author.petName}
                 loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg";
+                }}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
@@ -185,7 +208,18 @@ export const PostCard = ({
                 imageLoaded ? "opacity-100" : "opacity-0"
               )}
               onLoad={() => setImageLoaded(true)}
-              onError={() => {
+              onError={(e) => {
+                // eslint-disable-next-line no-console
+                console.debug("[PostCard image error]", id, {
+                  postImageSrc,
+                  currentSrc: e.currentTarget.currentSrc,
+                });
+                // Try a known-good placeholder once before showing the error state.
+                if (e.currentTarget.src !== window.location.origin + "/placeholder.svg") {
+                  e.currentTarget.src = "/placeholder.svg";
+                  setImageLoaded(true);
+                  return;
+                }
                 setImageError(true);
                 setImageLoaded(true);
               }}
