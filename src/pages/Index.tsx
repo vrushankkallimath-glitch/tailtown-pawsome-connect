@@ -7,24 +7,24 @@ import { SOSBanner } from "@/components/feed/SOSBanner";
 import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
-// Import images
-import images1 from "@/assets/images-1.jpg";
-import images2 from "@/assets/images-2.jpg";
-import images3 from "@/assets/images-3.jpg";
-import unnamed from "@/assets/unnamed.png";
-import unnamed1 from "@/assets/unnamed-1.png";
-import unnamed2 from "@/assets/unnamed-2.png";
-import unnamed3 from "@/assets/unnamed-3.png";
-import unnamed4 from "@/assets/unnamed-4.png";
-import unnamed5 from "@/assets/unnamed-5.png";
-import unnamed6 from "@/assets/unnamed-6.png";
-import unnamed7 from "@/assets/unnamed-7.png";
-import unnamed8 from "@/assets/unnamed-8.png";
-import unnamed9 from "@/assets/unnamed-9.png";
-import unnamed10 from "@/assets/unnamed-10.png";
-import unnamed11 from "@/assets/unnamed-11.png";
-import unnamed12 from "@/assets/unnamed-12.png";
-import hedgehog from "@/assets/hedgehog.jpg";
+// Local images served from /public/media
+const images1 = "/media/images-1.jpg";
+const images2 = "/media/images-2.jpg";
+const images3 = "/media/images-3.jpg";
+const unnamed = "/media/unnamed.png";
+const unnamed1 = "/media/unnamed-1.png";
+const unnamed2 = "/media/unnamed-2.png";
+const unnamed3 = "/media/unnamed-3.png";
+const unnamed4 = "/media/unnamed-4.png";
+const unnamed5 = "/media/unnamed-5.png";
+const unnamed6 = "/media/unnamed-6.png";
+const unnamed7 = "/media/unnamed-7.png";
+const unnamed8 = "/media/unnamed-8.png";
+const unnamed9 = "/media/unnamed-9.png";
+const unnamed10 = "/media/unnamed-10.png";
+const unnamed11 = "/media/unnamed-11.png";
+const unnamed12 = "/media/unnamed-12.png";
+const hedgehog = "/media/hedgehog.jpg";
 
 const max = images2;
 const mango = images3;
