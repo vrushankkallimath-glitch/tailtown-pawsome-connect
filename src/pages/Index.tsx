@@ -8,42 +8,26 @@ import { SOSBanner } from "@/components/feed/SOSBanner";
 import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
-// Import images (bundled by Vite)
-import images1 from "../assets/images-1.jpg";
-import images2 from "../assets/images-2.jpg";
-import images3 from "../assets/images-3.jpg";
-import unnamed from "../assets/unnamed.png";
-import unnamed1 from "../assets/unnamed-1.png";
-import unnamed2 from "../assets/unnamed-2.png";
-import unnamed3 from "../assets/unnamed-3.png";
-import unnamed4 from "../assets/unnamed-4.png";
-import unnamed5 from "../assets/unnamed-5.png";
-import unnamed6 from "../assets/unnamed-6.png";
-import unnamed7 from "../assets/unnamed-7.png";
-import unnamed8 from "../assets/unnamed-8.png";
-import unnamed9 from "../assets/unnamed-9.png";
-import unnamed10 from "../assets/unnamed-10.png";
-import unnamed11 from "../assets/unnamed-11.png";
-import unnamed12 from "../assets/unnamed-12.png";
-import hedgehog from "../assets/hedgehog.jpg";
-
-const max = images2;
-const mango = images3;
-const golide = unnamed5;
-const steve = unnamed;
-const jellybean = unnamed1;
-const willow = unnamed2;
-const gertrude = unnamed3;
-const rio = unnamed4;
-const frosty = unnamed6;
-const sprinkles = unnamed7;
-const mikey = unnamed8;
-const jimmy = unnamed9;
-const jerry = unnamed10;
-const hunter = unnamed11;
-const slithers = unnamed12;
-const iggy = images1;
-const hedge = hedgehog;
+// Use external placeholder images since local files aren't publicly accessible in this environment
+const max = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop"; // Golden retriever
+const mango = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop"; // Orange cat
+const golide = "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=400&h=400&fit=crop"; // Fish
+const steve = "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=400&h=400&fit=crop"; // Hamster
+const jellybean = "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400&h=400&fit=crop"; // Hamster 2
+const willow = "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&h=400&fit=crop"; // Bunny
+const gertrude = "https://images.unsplash.com/photo-1518882605630-8eb568c08250?w=400&h=400&fit=crop"; // Turtle
+const rio = "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=400&fit=crop"; // Parrot
+const frosty = "https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=400&h=400&fit=crop"; // Husky
+const sprinkles = "https://images.unsplash.com/photo-1597431534513-cdf0cf1c8116?w=400&h=400&fit=crop"; // Scorpion
+const mikey = "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=400&h=400&fit=crop"; // Lizard
+const jimmy = "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop"; // Pomeranian
+const jerry = "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=400&h=400&fit=crop"; // Mouse
+const hunter = "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400&h=400&fit=crop"; // Ferret
+const slithers = "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=400&h=400&fit=crop"; // Snake
+const iggy = "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=400&h=400&fit=crop"; // Iguana
+const hedge = "https://images.unsplash.com/photo-1446582768575-6a4b4208c1ab?w=400&h=400&fit=crop"; // Hedgehog
+const images2 = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop";
+const hedgehog = "https://images.unsplash.com/photo-1446582768575-6a4b4208c1ab?w=400&h=400&fit=crop";
 
 
 interface Post {

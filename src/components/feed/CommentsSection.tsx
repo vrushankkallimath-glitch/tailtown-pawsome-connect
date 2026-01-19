@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import avatarMax from "../../assets/images-2.jpg";
-import avatarMango from "../../assets/images-3.jpg";
-import avatarHedgehog from "../../assets/hedgehog.jpg";
+// Use external placeholder images
+const avatarMax = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=100&h=100&fit=crop";
+const avatarMango = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=100&h=100&fit=crop";
+const avatarHedgehog = "https://images.unsplash.com/photo-1446582768575-6a4b4208c1ab?w=100&h=100&fit=crop";
 
 interface Comment {
   id: string;
