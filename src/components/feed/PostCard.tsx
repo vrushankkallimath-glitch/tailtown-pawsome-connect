@@ -97,6 +97,9 @@ export const PostCard = ({
   const avatarSrc = coerceImgSrc(author.avatar) ?? "/placeholder.svg";
   const postImageSrc = coerceImgSrc(image);
 
+  // Debug: log resolved image URLs
+  console.debug("[PostCard]", id, { avatarSrc, postImageSrc, rawAvatar: author.avatar, rawImage: image });
+
   const [commentsOpen, setCommentsOpen] = useState(false);
 
   const handleMoreOptions = () => {
