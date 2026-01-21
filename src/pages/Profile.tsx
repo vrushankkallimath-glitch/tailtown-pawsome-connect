@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { Settings, Edit3, Plus } from "lucide-react";
+import { Settings, Edit3, Plus, Check, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { AddPetModal } from "@/components/modals/AddPetModal";
-import { EditProfileModal } from "@/components/modals/EditProfileModal";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 // Import pet images
 import max from "@/assets/pets/max.jpg";
 import mango from "@/assets/pets/mango.jpg";
 
-const userProfile = {
+const initialProfile = {
   name: "Jamie Wilson",
   neighborhood: "Downtown",
+  bio: "Pet parent to Max & Mango. Love outdoor adventures!",
   memberSince: "2024",
   stats: {
     posts: 47,
@@ -44,7 +46,42 @@ const pets = [
 
 const Profile = () => {
   const [addPetModalOpen, setAddPetModalOpen] = useState(false);
-  const [editProfileModalOpen, setEditProfileModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [profile, setProfile] = useState(initialProfile);
+  const [editForm, setEditForm] = useState({
+    name: profile.name,
+    neighborhood: profile.neighborhood,
+    bio: profile.bio,
+  });
+
+  const handleEditClick = () => {
+    setEditForm({
+      name: profile.name,
+      neighborhood: profile.neighborhood,
+      bio: profile.bio,
+    });
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setProfile({
+      ...profile,
+      name: editForm.name,
+      neighborhood: editForm.neighborhood,
+      bio: editForm.bio,
+    });
+    setIsEditing(false);
+    toast.success("Profile updated! 🎉");
+  };
+
+  const handleCancel = () => {
+    setEditForm({
+      name: profile.name,
+      neighborhood: profile.neighborhood,
+      bio: profile.bio,
+    });
+    setIsEditing(false);
+  };
 
   return (
     <AppLayout>
@@ -65,35 +102,87 @@ const Profile = () => {
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-display font-bold text-2xl">
-              {userProfile.name.charAt(0)}
+              {(isEditing ? editForm.name : profile.name).charAt(0)}
             </div>
             <div className="flex-1">
-              <h2 className="font-display font-bold text-xl">{userProfile.name}</h2>
-              <p className="text-sm text-muted-foreground">
-                📍 {userProfile.neighborhood} • Member since {userProfile.memberSince}
-              </p>
+              {isEditing ? (
+                <div className="space-y-2">
+                  <Input
+                    value={editForm.name}
+                    onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                    placeholder="Your name"
+                    className="font-display font-bold text-lg"
+                  />
+                  <Input
+                    value={editForm.neighborhood}
+                    onChange={(e) => setEditForm({ ...editForm, neighborhood: e.target.value })}
+                    placeholder="Neighborhood"
+                    className="text-sm"
+                  />
+                </div>
+              ) : (
+                <>
+                  <h2 className="font-display font-bold text-xl">{profile.name}</h2>
+                  <p className="text-sm text-muted-foreground">
+                    📍 {profile.neighborhood} • Member since {profile.memberSince}
+                  </p>
+                </>
+              )}
             </div>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setEditProfileModalOpen(true)}
-              className="p-2 rounded-xl hover:bg-muted transition-colors"
-            >
-              <Edit3 className="w-4 h-4 text-muted-foreground" />
-            </motion.button>
+            {isEditing ? (
+              <div className="flex gap-2">
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleSave}
+                  className="p-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                >
+                  <Check className="w-4 h-4" />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleCancel}
+                  className="p-2 rounded-xl bg-muted hover:bg-muted/80 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </motion.button>
+              </div>
+            ) : (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleEditClick}
+                className="p-2 rounded-xl hover:bg-muted transition-colors"
+              >
+                <Edit3 className="w-4 h-4 text-muted-foreground" />
+              </motion.button>
+            )}
           </div>
+
+          {/* Bio */}
+          {isEditing ? (
+            <Input
+              value={editForm.bio}
+              onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
+              placeholder="Write a short bio..."
+              className="mb-4"
+            />
+          ) : (
+            <p className="text-sm text-muted-foreground mb-4">{profile.bio}</p>
+          )}
 
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="p-3 rounded-xl bg-sage-light">
-              <p className="font-display font-bold text-xl">{userProfile.stats.posts}</p>
+              <p className="font-display font-bold text-xl">{profile.stats.posts}</p>
               <p className="text-xs text-muted-foreground">Posts</p>
             </div>
             <div className="p-3 rounded-xl bg-terracotta-light">
-              <p className="font-display font-bold text-xl">{userProfile.stats.boops}</p>
+              <p className="font-display font-bold text-xl">{profile.stats.boops}</p>
               <p className="text-xs text-muted-foreground">Boops</p>
             </div>
             <div className="p-3 rounded-xl bg-sage-light">
-              <p className="font-display font-bold text-xl">{userProfile.stats.friends}</p>
+              <p className="font-display font-bold text-xl">{profile.stats.friends}</p>
               <p className="text-xs text-muted-foreground">Friends</p>
             </div>
           </div>
@@ -165,11 +254,6 @@ const Profile = () => {
       </div>
 
       <AddPetModal open={addPetModalOpen} onOpenChange={setAddPetModalOpen} />
-      <EditProfileModal 
-        open={editProfileModalOpen} 
-        onOpenChange={setEditProfileModalOpen}
-        profile={userProfile}
-      />
     </AppLayout>
   );
 };

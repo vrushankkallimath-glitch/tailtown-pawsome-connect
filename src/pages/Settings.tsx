@@ -2,15 +2,30 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { Bell, Moon, Shield, HelpCircle, LogOut, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Switch } from "@/components/ui/switch";
-import { useState } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@/hooks/useTheme";
+import { useSettings } from "@/hooks/useSettings";
 
 const Settings = () => {
   const navigate = useNavigate();
-  const [notifications, setNotifications] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [locationSharing, setLocationSharing] = useState(true);
+  const { isDarkMode, toggleDarkMode } = useTheme();
+  const { notifications, locationSharing, setNotifications, setLocationSharing } = useSettings();
+
+  const handleDarkModeToggle = () => {
+    toggleDarkMode();
+    toast.success(isDarkMode ? "Light mode enabled ☀️" : "Dark mode enabled 🌙");
+  };
+
+  const handleNotificationsToggle = (value: boolean) => {
+    setNotifications(value);
+    toast.success(value ? "Notifications enabled 🔔" : "Notifications disabled 🔕");
+  };
+
+  const handleLocationToggle = (value: boolean) => {
+    setLocationSharing(value);
+    toast.success(value ? "Location sharing enabled 📍" : "Location sharing disabled");
+  };
 
   const settingsItems = [
     {
@@ -19,15 +34,15 @@ const Settings = () => {
       description: "Push notifications for boops & comments",
       hasSwitch: true,
       value: notifications,
-      onChange: setNotifications,
+      onChange: handleNotificationsToggle,
     },
     {
       icon: Moon,
       label: "Dark Mode",
       description: "Switch to dark theme",
       hasSwitch: true,
-      value: darkMode,
-      onChange: setDarkMode,
+      value: isDarkMode,
+      onChange: handleDarkModeToggle,
     },
     {
       icon: Shield,
@@ -35,7 +50,7 @@ const Settings = () => {
       description: "Share neighborhood for local posts",
       hasSwitch: true,
       value: locationSharing,
-      onChange: setLocationSharing,
+      onChange: handleLocationToggle,
     },
   ];
 
