@@ -8,26 +8,17 @@ import { SOSBanner } from "@/components/feed/SOSBanner";
 import { FeedTabs } from "@/components/feed/FeedTabs";
 import { PostCard, PostType } from "@/components/feed/PostCard";
 
-// Use external placeholder images since local files aren't publicly accessible in this environment
-const max = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop"; // Golden retriever
-const mango = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop"; // Orange cat
-const golide = "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=400&h=400&fit=crop"; // Fish
-const steve = "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=400&h=400&fit=crop"; // Hamster
-const jellybean = "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400&h=400&fit=crop"; // Hamster 2
-const willow = "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&h=400&fit=crop"; // Bunny
-const gertrude = "https://images.unsplash.com/photo-1518882605630-8eb568c08250?w=400&h=400&fit=crop"; // Turtle
-const rio = "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=400&fit=crop"; // Parrot
-const frosty = "https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=400&h=400&fit=crop"; // Husky
-const sprinkles = "https://images.unsplash.com/photo-1597431534513-cdf0cf1c8116?w=400&h=400&fit=crop"; // Scorpion
-const mikey = "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=400&h=400&fit=crop"; // Lizard
-const jimmy = "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop"; // Pomeranian
-const jerry = "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=400&h=400&fit=crop"; // Mouse
-const hunter = "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400&h=400&fit=crop"; // Ferret
-const slithers = "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=400&h=400&fit=crop"; // Snake
-const iggy = "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=400&h=400&fit=crop"; // Iguana
-const hedge = "https://images.unsplash.com/photo-1446582768575-6a4b4208c1ab?w=400&h=400&fit=crop"; // Hedgehog
-const images2 = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop";
-const hedgehog = "https://images.unsplash.com/photo-1446582768575-6a4b4208c1ab?w=400&h=400&fit=crop";
+// Import pet images
+import max from "@/assets/pets/max.jpg";
+import mango from "@/assets/pets/mango.jpg";
+import rio from "@/assets/pets/rio.png";
+import sprinkles from "@/assets/pets/sprinkles.png";
+import jellybean from "@/assets/pets/jellybean.png";
+import jimmy from "@/assets/pets/jimmy.png";
+import willow from "@/assets/pets/willow.png";
+import iggy from "@/assets/pets/iggy.jpg";
+import frosty from "@/assets/pets/frosty.png";
+import goldie from "@/assets/pets/goldie.png";
 
 
 interface Post {
@@ -59,7 +50,7 @@ const mockPosts: Post[] = [
       neighborhood: "Oakwood",
     },
     content: "Someone's loving this sunny afternoon! Max couldn't resist rolling in the freshly cut grass 🌿",
-    image: images2,
+    image: max,
     boops: 42,
     comments: 8,
     timeAgo: "2h ago",
@@ -74,7 +65,7 @@ const mockPosts: Post[] = [
       petName: "Mango",
       neighborhood: "Downtown",
     },
-    content: "Mango here's chillin by the window side!🐾",
+    content: "Mango here's chillin by the window side! 🐾",
     image: mango,
     milestone: "Chillin' Pro",
     boops: 127,
@@ -87,12 +78,12 @@ const mockPosts: Post[] = [
     type: "text",
     author: {
       name: "Emily R.",
-      avatar: golide,
+      avatar: goldie,
       petName: "Goldie",
       neighborhood: "Riverside",
     },
     content: "Fish are such fascinating pets! Goldie has been swimming around all day, exploring every corner of her small bowl. 🐠 Anyone else have tips on creating a more enriching environment for their aquatic friends?",
-    image: golide,
+    image: goldie,
     boops: 89,
     comments: 31,
     timeAgo: "5h ago",
@@ -102,17 +93,17 @@ const mockPosts: Post[] = [
     id: "4",
     type: "photo",
     author: {
-      name: "Lisa K.",
-      avatar: steve,
-      petName: "Steve",
-      neighborhood: "Maple Heights",
+      name: "James B.",
+      avatar: rio,
+      petName: "Rio",
+      neighborhood: "Chilltown",
     },
-content: "steve is literally just a sentient potato who's really majestic, and his real cuteness in his cheeks!!! 10/10 no thoughts, just gives steve harrington vibes, and a total main character moment every time he finds a sunflower seed",
-    image: steve, 
-    boops: 234,
-    comments: 45,
+    content: "Rio is a parrot who loves to dance to music! Whenever I play some tunes, he starts bobbing his head and moving his feet. It's the cutest thing ever! 🦜",
+    image: rio,
+    boops: 64,
+    comments: 9,
     timeAgo: "6h ago",
-    isLocal: false,
+    isLocal: true,
   },
   {
     id: "5",
@@ -123,7 +114,7 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       petName: "Jellybean",
       neighborhood: "Oakwood",
     },
-    content: "jellybean just turned 3 years!! he is a very active male hamster.  he is very healthy and runs in his hamster wheel all day.",
+    content: "Jellybean just turned 3 years!! He is a very active male hamster. He is very healthy and runs in his hamster wheel all day. 🐹",
     image: jellybean,
     boops: 56,
     comments: 12,
@@ -148,46 +139,46 @@ content: "steve is literally just a sentient potato who's really majestic, and h
   },
   {
     id: "7",
-    type: "photo",  
+    type: "photo",
     author: {
-      name: "Sophia G.",
-      avatar: gertrude,
-      petName: "Gertrude",
-      neighborhood: "SunnyVale",
+      name: "Noah D.",
+      avatar: jimmy,
+      petName: "Jimmy",
+      neighborhood: "Riverside",
     },
-    content: "Gertrude here is living her best life soaking up the sun!",
-    image: gertrude,
-    boops: 75,
-    comments: 15,
+    content: "Jimmy the Pomeranian looking dapper as ever! That fluffy coat is everything 🧡",
+    image: jimmy,
+    boops: 234,
+    comments: 45,
     timeAgo: "14h ago",
     isLocal: false,
   },
   {
     id: "8",
-    type: "photo",  
+    type: "photo",
     author: {
-      name: "James B.",
-      avatar: rio,
-      petName: "Rio",
-      neighborhood: "Chilltown",
+      name: "Lucas J.",
+      avatar: iggy,
+      petName: "Iggy",
+      neighborhood: "Oakwood",
     },
-    content: "Rio is a parrot who loves to dance to music! Whenever I play some tunes, he starts bobbing his head and moving his feet. It's the cutest thing ever! ", 
-    image: rio,
-    boops: 64,
-    comments: 9,
+    content: "Iggy the iguana is loving his new basking spot! 🦎",
+    image: iggy,
+    boops: 38,
+    comments: 7,
     timeAgo: "16h ago",
     isLocal: true,
   },
   {
     id: "9",
-    type: "photo",  
+    type: "photo",
     author: {
       name: "Olivia S.",
       avatar: frosty,
       petName: "Frosty",
       neighborhood: "Paris",
     },
-    content: "Frosty the husky pup enjoying his first snow day!",
+    content: "Frosty the husky pup with those beautiful blue eyes! ❄️🐕",
     image: frosty,
     boops: 89,
     comments: 14,
@@ -203,125 +194,13 @@ content: "steve is literally just a sentient potato who's really majestic, and h
       petName: "Sprinkles",
       neighborhood: "Oakwood",
     },
-    content: "Sprinkles Scorpion is ready for his close-up!",
+    content: "Sprinkles the scorpion is ready for his close-up! Not your typical pet but absolutely fascinating 🦂",
     image: sprinkles,
     boops: 34,
     comments: 5,
     timeAgo: "20h ago",
     isLocal: true,
   },
-  {
-    id: "11",
-    type: "photo",  
-    author: {
-      name: "Mia H.",
-      avatar: mikey,
-      petName: "Mikey",
-      neighborhood: "Downtown",
-    },
-    content: "Mikey the lizard basking under his heat lamp!",
-    image: mikey,
-    boops: 47,
-    comments: 11,
-    timeAgo: "22h ago",
-    isLocal: false,
-  },
-  {
-    id: "12",
-    type: "photo",
-    author: {
-      name: "Noah D.",
-      avatar: jimmy,
-      petName: "Jimmy",
-      neighborhood: "Riverside",
-    },
-    content: "Jimmy the pomerianian looking dapper as ever!",
-    image: jimmy,
-    boops: 29,
-    comments: 6,
-    timeAgo: "1d ago",
-    isLocal: true,
-  },
-  {
-    id: "13",
-    type: "photo", 
-    author: {
-      name: "Ava C.",
-      avatar: jerry,
-      petName: "Jerry",
-      neighborhood: "Maple Heights",
-    },
-    content: "Jerry the mouse is the cutest and softest thing alive!",
-    image: jerry,
-    boops: 53,
-    comments: 13,
-    timeAgo: "1d ago",
-    isLocal: false,
-  },
-  {
-    id: "14",
-    type: "photo",
-    author: {
-      name: "Liam S.",
-      avatar: hunter,
-      petName: "Hunter",
-      neighborhood: "SunnyVale",
-    },
-    content: "Hunter the ferret is always up to some mischief!",
-    image: hunter,
-    boops: 61, 
-    comments: 10,
-    timeAgo: "1d ago",
-    isLocal: true,
-  },
-  {
-    id: "15",
-    type: "photo", 
-    author: {
-      name: "Isabella M.",
-      avatar: slithers,
-      petName: "Slithers",
-      neighborhood: "Chilltown",
-    },
-    content: "Slithers the snake is looking extra shiny after his shed!",
-    image: slithers,
-    boops: 22,
-    comments: 4,
-    timeAgo: "2d ago",
-    isLocal: false,
-  },
-  {
-    id: "16",
-    type: "photo",    
-    author: {
-      name: "Lucas J.",
-      avatar: iggy,
-      petName: "Iggy",
-      neighborhood: "Oakwood",
-    },
-    content: "Iggy the iguana is loving his new basking spot!",
-    image: iggy,
-    boops: 38,
-    comments: 7,
-    timeAgo: "2d ago",
-    isLocal: true,
-  },
-  {
-    id: "17",
-    type: "photo",  
-    author: {
-      name: "Charlotte V.",
-      avatar: hedge,
-      petName: "Hedge",
-      neighborhood: "Downtown",  
-    },
-    content: "Hedge the hedgehog is ready for his close-up!",
-    image: hedgehog,
-    boops: 45,
-    comments: 9,
-    timeAgo: "2d ago",
-    isLocal: false,
-  },  
 ];
 
 const Index = () => {

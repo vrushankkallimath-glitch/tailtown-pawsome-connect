@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { AddPetModal } from "@/components/modals/AddPetModal";
 import { EditProfileModal } from "@/components/modals/EditProfileModal";
 
-// Use external placeholder images
-const dogGolden = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop";
-const catOrange = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop";
+// Import pet images
+import max from "@/assets/pets/max.jpg";
+import mango from "@/assets/pets/mango.jpg";
 
 const userProfile = {
   name: "Jamie Wilson",
@@ -28,16 +28,16 @@ const pets = [
     breed: "Golden Retriever",
     age: "2 years",
     energyLevel: "High",
-    image: dogGolden,
+    image: max,
     tags: ["#Zoomies", "#BallIsLife", "#SwimLover"],
   },
   {
     id: "2",
     name: "Mango",
-    breed: "Orange Tabby",
+    breed: "Persian Cat",
     age: "4 years",
     energyLevel: "Medium",
-    image: catOrange,
+    image: mango,
     tags: ["#CuddleBug", "#NapQueen", "#TreatMotivated"],
   },
 ];
