@@ -8,14 +8,14 @@ interface FeedTabsProps {
 
 export const FeedTabs = ({ activeTab, onTabChange }: FeedTabsProps) => {
   return (
-    <div className="flex items-center gap-1 p-1 bg-sage-light rounded-full w-fit relative">
+    <div className="flex items-center gap-1 p-1 bg-sage-light rounded-full w-fit relative overflow-hidden">
       {/* Animated background pill */}
       <motion.div
-        className="absolute h-[calc(100%-8px)] rounded-full bg-primary"
+        className="absolute top-1 bottom-1 rounded-full bg-primary"
         initial={false}
         animate={{
-          x: activeTab === "local" ? 4 : "calc(100% + 4px)",
-          width: activeTab === "local" ? "48%" : "44%",
+          left: activeTab === "local" ? "4px" : "50%",
+          right: activeTab === "local" ? "50%" : "4px",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       />
