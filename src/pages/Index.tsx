@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
-import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { MobileHeader } from "@/components/feed/MobileHeader";
 import { SOSBanner } from "@/components/feed/SOSBanner";
@@ -343,6 +343,7 @@ const mockPosts: Post[] = [
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<"local" | "global">("local");
+  const navigate = useNavigate();
 
   const filteredPosts = activeTab === "local" 
     ? mockPosts.filter(post => post.isLocal)
@@ -390,13 +391,13 @@ const Index = () => {
         )}
       </div>
 
-      {/* Floating Action Button */}
+      {/* Floating Action Button - navigates to Profile */}
       <motion.button
         whileHover={{ scale: 1.1, rotate: 90 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => toast.info("Create post coming soon")}
+        onClick={() => navigate("/profile")}
         className="fab-button fixed bottom-24 right-4 md:bottom-8 md:right-8 z-50 animate-pulse-glow"
-        aria-label="Create new post"
+        aria-label="Go to profile"
         type="button"
       >
         <Plus className="w-6 h-6" />

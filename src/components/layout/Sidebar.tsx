@@ -84,24 +84,26 @@ export const Sidebar = () => {
 
       {/* User section */}
       <div className="p-4 border-t border-sidebar-border">
-        <motion.div 
-          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-sage-light cursor-pointer"
-          whileHover={{ scale: 1.02, x: 4 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground font-bold">
-            J
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-semibold text-sm truncate">Jamie & Max</p>
-            <p className="text-xs text-muted-foreground truncate">Downtown</p>
-          </div>
-          <motion.div
-            className="w-2 h-2 rounded-full bg-green-500"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.div>
+        <Link to="/profile">
+          <motion.div 
+            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-sage-light cursor-pointer"
+            whileHover={{ scale: 1.02, x: 4 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground font-bold">
+              J
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-sm truncate">Jamie & Max</p>
+              <p className="text-xs text-muted-foreground truncate">Downtown</p>
+            </div>
+            <motion.div
+              className="w-2 h-2 rounded-full bg-green-500"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
+        </Link>
       </div>
     </aside>
   );
