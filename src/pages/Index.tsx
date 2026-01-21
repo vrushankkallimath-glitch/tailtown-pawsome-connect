@@ -19,6 +19,14 @@ import willow from "@/assets/pets/willow.png";
 import iggy from "@/assets/pets/iggy.jpg";
 import frosty from "@/assets/pets/frosty.png";
 import goldie from "@/assets/pets/goldie.png";
+import hedge from "@/assets/pets/hedge.jpg";
+import olivia from "@/assets/pets/olivia.png";
+import gertude from "@/assets/pets/gertude.png";
+import charlie from "@/assets/pets/charlie.jpg";
+import hunter from "@/assets/pets/hunter.png";
+import jerry from "@/assets/pets/jerry.png";
+import steve from "@/assets/pets/steve.jpg";
+import slithers from "@/assets/pets/slithers.png";
 
 
 interface Post {
@@ -200,6 +208,136 @@ const mockPosts: Post[] = [
     comments: 5,
     timeAgo: "20h ago",
     isLocal: true,
+  },
+  {
+    id: "11",
+    type: "photo",
+    author: {
+      name: "Rachel H.",
+      avatar: hedge,
+      petName: "Hedge",
+      neighborhood: "Riverside",
+    },
+    content: "Hedge the hedgehog is looking extra adorable today! Those tiny little paws just melt my heart 🦔💕",
+    image: hedge,
+    boops: 156,
+    comments: 28,
+    timeAgo: "1d ago",
+    isLocal: true,
+  },
+  {
+    id: "12",
+    type: "milestone",
+    author: {
+      name: "Kate M.",
+      avatar: olivia,
+      petName: "Olivia",
+      neighborhood: "Downtown",
+    },
+    content: "Olivia is the most curious kitten! She loves exploring and finding the coziest spots to nap 🐱✨",
+    image: olivia,
+    milestone: "Curiosity Champion",
+    boops: 203,
+    comments: 41,
+    timeAgo: "1d ago",
+    isLocal: true,
+  },
+  {
+    id: "13",
+    type: "photo",
+    author: {
+      name: "Tom W.",
+      avatar: gertude,
+      petName: "Gertude",
+      neighborhood: "Lakeside",
+    },
+    content: "Gertude the turtle soaking up the sun! Slow and steady wins the race 🐢☀️",
+    image: gertude,
+    boops: 87,
+    comments: 15,
+    timeAgo: "1d ago",
+    isLocal: false,
+  },
+  {
+    id: "14",
+    type: "photo",
+    author: {
+      name: "Brian C.",
+      avatar: charlie,
+      petName: "Charlie",
+      neighborhood: "Oakwood",
+    },
+    content: "Charlie the pug is living his best couch potato life! Those wrinkles are irresistible 🐶💤",
+    image: charlie,
+    boops: 178,
+    comments: 32,
+    timeAgo: "1d ago",
+    isLocal: true,
+  },
+  {
+    id: "15",
+    type: "photo",
+    author: {
+      name: "Derek H.",
+      avatar: hunter,
+      petName: "Hunter",
+      neighborhood: "Downtown",
+    },
+    content: "Hunter the tarantula showing off his gorgeous colors! Not everyone's cup of tea but I think he's beautiful 🕷️🖤",
+    image: hunter,
+    boops: 45,
+    comments: 19,
+    timeAgo: "2d ago",
+    isLocal: true,
+  },
+  {
+    id: "16",
+    type: "milestone",
+    author: {
+      name: "Sam J.",
+      avatar: jerry,
+      petName: "Jerry",
+      neighborhood: "Riverside",
+    },
+    content: "Jerry the chinchilla just discovered his love for cardboard boxes! The softest fluffball you'll ever see 🐭📦",
+    image: jerry,
+    milestone: "Box Explorer",
+    boops: 134,
+    comments: 24,
+    timeAgo: "2d ago",
+    isLocal: true,
+  },
+  {
+    id: "17",
+    type: "photo",
+    author: {
+      name: "Amy S.",
+      avatar: steve,
+      petName: "Steve",
+      neighborhood: "Oakwood",
+    },
+    content: "Steve the hamster is having a GREAT hair day! Look at that majestic floof 🐹✨",
+    image: steve,
+    boops: 267,
+    comments: 48,
+    timeAgo: "2d ago",
+    isLocal: true,
+  },
+  {
+    id: "18",
+    type: "photo",
+    author: {
+      name: "Chris P.",
+      avatar: slithers,
+      petName: "Slithers",
+      neighborhood: "Downtown",
+    },
+    content: "Slithers is the sweetest little snake! Such beautiful patterns and so gentle 🐍💕",
+    image: slithers,
+    boops: 92,
+    comments: 21,
+    timeAgo: "2d ago",
+    isLocal: false,
   },
 ];
 
